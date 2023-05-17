@@ -10,7 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import ru.tinkoff.edu.CreateBot;
+import ru.tinkoff.edu.Build;
+import ru.tinkoff.edu.BBuild;
 import ru.tinkoff.edu.dto.ApiErrorResponse;
 import ru.tinkoff.edu.dto.LinkUpdaterRequest;
 
@@ -27,13 +28,13 @@ public class LinkUpdatesController {
     @Operation(summary = "Отправить обновление")
     @PostMapping(consumes = "application/json", produces = "application/json")
     String updateLink(@RequestBody @Valid LinkUpdaterRequest request){
-        TelegramBot bot = CreateBot.getBot();
+        TelegramBot bot = BBuild.getBot();
         System.err.println(Arrays.toString(request.tgChatIds()));
         for (Integer chatid : request.tgChatIds()) {
             bot.execute(new SendMessage(chatid, "По вашей ссылке  " + request.url() + " произошло обновление "
                     + request.description()));
         }
-        return  "some body ones told me...";
+        return  "some body ones told me..";
     }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)

@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbitMQConfiguration {
+public class CConfiguration {
 
     @Bean
     public DirectExchange directExchange() {
@@ -23,16 +23,16 @@ public class RabbitMQConfiguration {
     }
 
     @Bean
-    public Queue addChat() {
+    public Queue add() {
         return new Queue("addChat", false);
     }
     @Bean
-    public Queue deleteChat() {
+    public Queue delete() {
         return new Queue("deleteChat", false);
     }
 
     @Bean
-    public Queue listResponse() {
+    public Queue Response() {
         return new Queue("listResponse", false);
     }
     @Bean
@@ -50,9 +50,9 @@ public class RabbitMQConfiguration {
     @Bean
     Queue queue() {
         return QueueBuilder.nonDurable("track")
-                .withArgument("x-dead-letter-exchange", "exchange")
-                .withArgument("x-dead-letter-routing-key", "routKey" + ".dlq")
-                .build();
+            .withArgument("x-dead-letter-exchange", "exchange")
+            .withArgument("x-dead-letter-routing-key", "routKey" + ".dlq")
+            .build();
     }
     @Bean
     public ConnectionFactory connectionFactory() {

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BotConfig {
+public class ConfigBot {
     @Value("${app.test}")
     private String test;
 

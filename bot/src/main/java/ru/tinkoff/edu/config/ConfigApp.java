@@ -9,9 +9,9 @@ import java.sql.Connection;
 
 @Validated
 @ConfigurationProperties(prefix = "app", ignoreUnknownFields = true)
-public record ApplicationConfig(@NotNull String test) {
+public record ConfigApp(@NotNull String test) {
     @Bean
-    public String test(ApplicationConfig config) {
+    public String test(ConfigApp config) {
         return config.test;
     }
 
