@@ -12,7 +12,7 @@ public class BotApplication {
 public static void main(String[] args) {
         var ctx = SpringApplication.run(BotApplication.class, args);
         var c = ctx.getBean("BOT", Bot.class);
-        new Build(c.getTest());
+        new BBuild(c.getTest());
         
         }
 

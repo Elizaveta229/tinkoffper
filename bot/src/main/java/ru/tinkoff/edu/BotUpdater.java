@@ -53,16 +53,16 @@ public class BotUpdater implements UpdatesListener {
                         start(update);
                     }
                     case "/help" -> {
-                        bot.execute(new SendMessage(update.message().chat().id(), "никто не поможет"));
+                        bot.execute(new SendMessage(update.message().chat().id(), "помощь"));
                     }
                     case "/track" -> {
-                        bot.execute(new SendMessage(update.message().chat().id(), "type link"));
+                        bot.execute(new SendMessage(update.message().chat().id(), "отслеживание"));
                         update.message().messageId();
                         updateid_fromComand = update.message().messageId();
                         comand = msg;
                     }
                     case "/untrack" -> {
-                        bot.execute(new SendMessage(update.message().chat().id(), "type link"));
+                        bot.execute(new SendMessage(update.message().chat().id(), "прекращение отслеживния"));
                         updateid_fromComand = update.message().messageId();
                         comand = msg;
                     }
@@ -93,7 +93,7 @@ public class BotUpdater implements UpdatesListener {
                                             System.out.println(message.toString());
                                             rabbitTemplate.convertAndSend("track", message);
                                             bot.execute(new SendMessage(update.message().chat().id(),
-                                                    "Ваша ссылка добавлена для отслеживания"));
+                                                    "Ссылка добавлена для отслеживания"));
                                         } catch (URISyntaxException | JsonProcessingException e) {
                                             throw new RuntimeException(e);
                                         }
@@ -101,7 +101,7 @@ public class BotUpdater implements UpdatesListener {
 
                                     }else{
                                         bot.execute(new SendMessage(update.message().chat().id(),
-                                                "Данный тип ссылок не поддерживается"));
+                                                "Тип ссылки не поддерживается"));
                                     }
 
                                     //client.addLink(update.message().chat().id(), update.message().text());
@@ -122,7 +122,7 @@ public class BotUpdater implements UpdatesListener {
                                         System.out.println(message.toString());
                                         rabbitTemplate.convertAndSend("untrack", message);
                                         bot.execute(new SendMessage(update.message().chat().id(),
-                                                "Ваша ссылка удалена из отслеживания"));
+                                                "Ссылка больше не отслеживается"));
                                     } catch (URISyntaxException | JsonProcessingException e) {
                                         throw new RuntimeException(e);
                                     }
@@ -132,7 +132,7 @@ public class BotUpdater implements UpdatesListener {
                             }
 
                         }
-                        else bot.execute(new SendMessage(update.message().chat().id(), "Твоя моя не понимать"));
+                        else bot.execute(new SendMessage(update.message().chat().id(), "ошибка"));
                     }
 
                 }
@@ -147,7 +147,7 @@ public class BotUpdater implements UpdatesListener {
 
             //producer.addChat(update.message().chat().id());
             //new ScrapperClient().addChat(update.message().chat().id());
-            bot.execute(new SendMessage(update.message().chat().id(), "зарегали команду старт"));
+            bot.execute(new SendMessage(update.message().chat().id(), "старт"));
         }
 
     public ConnectionFactory connectionFactory() {
